@@ -33,11 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-              Color(0xff192543),
-             Color(0xff232f4c),
+                 Color(0xff3C4861),
            
-            Color(0xff3C4861),
-          
+            Color(0xff232f4c),
+            Color(0xff192543),
           ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -174,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Ink(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xff97eaa3), Color(0xff9af9e9)],
+                              colors: [ Color(0xff9af9e9),Color(0xff97eaa3)],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
