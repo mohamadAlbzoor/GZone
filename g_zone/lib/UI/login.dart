@@ -32,7 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xff192543), Color(0xff3C4861)])),
+              colors: [
+              Color(0xff192543),
+             Color(0xff232f4c),
+           
+            Color(0xff3C4861),
+          
+          ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -70,8 +76,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: myController,
                       decoration: InputDecoration(
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: null,
+                            fontWeight: FontWeight.w100,
+                            fontStyle: FontStyle.normal,
+                          ),
+                          labelStyle: TextStyle(
+                            color: Color(0xff59667d), // <-- Change this
+                            fontSize: null,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          ),
                           labelText: 'Email',
                           hintText: 'abc@mail.com'),
                       validator: MultiValidator([
@@ -83,9 +102,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(
                       left: 15.0, right: 15.0, top: 15, bottom: 0),
                   child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       controller: PassController,
                       obscureText: true,
                       decoration: InputDecoration(
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: null,
+                            fontWeight: FontWeight.w100,
+                            fontStyle: FontStyle.normal,
+                          ),
+                          labelStyle: TextStyle(
+                            color: Color(0xff59667d), // <-- Change this
+                            fontSize: null,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          ),
                           labelText: 'Password',
                           hintText: 'Enter secure password'),
                       validator: (value) {
@@ -142,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Ink(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xffa7ff54), Color(0xff82F395)],
+                              colors: [Color(0xff97eaa3), Color(0xff9af9e9)],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
@@ -154,7 +186,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             "Login",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.blueGrey, fontSize: 20),
+                            style:
+                                TextStyle(color: Colors.blueGrey, fontSize: 20),
                           ),
                         ),
                       ),
