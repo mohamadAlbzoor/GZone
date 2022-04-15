@@ -14,8 +14,11 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  final myController = TextEditingController();
+ final myController = TextEditingController();
+  final myController2 = TextEditingController();
+
   final PassController = TextEditingController();
+  final PassController2 = TextEditingController();
 
   @override
   void dispose() {
@@ -71,7 +74,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: TextFormField(
                       controller: myController,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(),
                           labelText: 'Email',
                           hintText: 'abc@mail.com'),
                       validator: MultiValidator([
@@ -80,14 +82,34 @@ class _SignupScreenState extends State<SignupScreen> {
                       ])),
                 ),
                 Padding(
+                padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 15, bottom: 15),
+                child: TextFormField(
+                    controller: PassController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        hintText: 'Enter secure password'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password Cant be Empty';
+                      }
+                      if (value != PassController2.text) {
+                        return 'Password has to be the same';
+                      }
+                      if (value.length < 6) {
+                        return 'Password Cant be less than 6 Characters ';
+                      }
+                    }),
+              ),
+                Padding(
                   padding: const EdgeInsets.only(
                       left: 15.0, right: 15.0, top: 15, bottom: 0),
                   child: TextFormField(
                       controller: PassController,
                       obscureText: true,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
+                          labelText: 'Confirm Password',
                           hintText: 'Enter secure password'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {

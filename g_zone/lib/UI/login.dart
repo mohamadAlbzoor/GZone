@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 //}
                 //}
-                                Get.to(() => HomeScreen());
+                Get.to(() => HomeScreen());
 
                 //}
                 //}
@@ -72,7 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                       controller: myController,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(),
                           labelText: 'Email',
                           hintText: 'abc@mail.com'),
                       validator: MultiValidator([
@@ -87,7 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: PassController,
                       obscureText: true,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(),
                           labelText: 'Password',
                           hintText: 'Enter secure password'),
                       validator: (value) {
@@ -144,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Ink(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xff43FF62), Color(0xff82F395)],
+                              colors: [Color(0xffa7ff54), Color(0xff82F395)],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
@@ -156,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             "Login",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                            style: TextStyle(color: Colors.blueGrey, fontSize: 20),
                           ),
                         ),
                       ),

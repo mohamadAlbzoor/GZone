@@ -61,8 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return GetMaterialApp( //for navigation dont forget to use GetMaterialApp
       title: 'getXpro',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       initialRoute: '/home',
       routes: {
