@@ -1,0 +1,30 @@
+POST http://localhost:5000/user/signUp
+Content-Type: application/json
+
+{
+  "username": "shardex",
+  "email": "mb22022@hotmail.com",
+  "password": "xdxdxdxd",
+  "repeatPassword": "xdxdxdxd"
+}
+
+###
+
+POST http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+  "email": "mb22022@hotmail.com",
+  "password": "xdxdxdxd"
+}
+
+###
+
+GET http://localhost:5000/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMDUzMDg5fQ.9PzMUBqBErxSK6xXnooFhbmy5VjffEFE15ziswkqlo4
+
+{
+  "email": "mb22022@hotmail.com",
+  "password": "xdxdxdxd"
+}
