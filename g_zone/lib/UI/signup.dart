@@ -106,7 +106,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   padding: const EdgeInsets.only(
                       left: 15.0, right: 15.0, top: 15, bottom: 0),
                   child: TextFormField(
-                      controller: PassController,
+                      controller: PassController2,
                       obscureText: true,
                       decoration: InputDecoration(
                           labelText: 'Confirm Password',
@@ -122,19 +122,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 60.0),
-                ),
-                FlatButton(
-                  onPressed: () {
-                    //}
-                    //}
-                    //TODO FORGOT PASSWORD SCREEN GOES HERE
-                    //}
-                    //}
-                  },
-                  child: Text(
-                    'Forgot Password',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
@@ -165,7 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Ink(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xff43FF62), Color(0xff82F395)],
+                              colors: [Color(0xffa7ff54), Color(0xff82F395)],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
@@ -175,32 +162,13 @@ class _SignupScreenState extends State<SignupScreen> {
                               BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                           alignment: Alignment.center,
                           child: Text(
-                            "Login",
+                            "Signup",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                            style: TextStyle(color: Colors.blueGrey, fontSize: 20),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    //}
-                    //}
-                    // make account
-                    // }
-                    //}
-                  },
-                  child: Text(
-                    'Make Account Using Email',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ],
