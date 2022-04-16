@@ -28,3 +28,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
   "email": "mb22022@hotmail.com",
   "password": "xdxdxdxd"
 }
+
+###
+
+GET http://localhost:5000/games/stats/year
+
+###
+
+GET http://localhost:5000/games/stats/categories
