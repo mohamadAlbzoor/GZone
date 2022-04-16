@@ -87,7 +87,7 @@ router.post('/login', async (req, res) => {
 
     // Fetch the user from the database
     const [dbUser] = await query('SELECT `id`, `email`, `password` from `user` WHERE `email` = ?', [email])
-    if(!dbUser){
+    if(dbUser === undefined){
       return res.status(403).json({msg: 'Invalid credentials'})
     }
 

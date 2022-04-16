@@ -2,8 +2,8 @@ POST http://localhost:5000/user/signUp
 Content-Type: application/json
 
 {
-  "username": "shardex",
-  "email": "mb22022@hotmail.com",
+  "username": "sharudesu",
+  "email": "iish4rdex@hotmail.com",
   "password": "xdxdxdxd",
   "repeatPassword": "xdxdxdxd"
 }
@@ -20,19 +20,54 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5000/auth
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMDUzMDg5fQ.9PzMUBqBErxSK6xXnooFhbmy5VjffEFE15ziswkqlo4
-
-{
-  "email": "mb22022@hotmail.com",
-  "password": "xdxdxdxd"
-}
-
-###
-
 GET http://localhost:5000/games/stats/year
 
 ###
 
 GET http://localhost:5000/games/stats/categories
+
+###
+
+GET http://localhost:5000/games/stats/genres
+
+###
+
+GET http://localhost:5000/games/stats/genres/top
+
+###
+
+POST http://localhost:5000/rooms/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMDUzMDg5fQ.9PzMUBqBErxSK6xXnooFhbmy5VjffEFE15ziswkqlo4
+
+{
+  "title": "Tuned in tokyo",
+  "capacity": 10,
+  "appid": 10
+}
+
+###
+
+DELETE http://localhost:5000/rooms/delete/12
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+###
+
+PUT http://localhost:5000/rooms/add/12
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+{
+  "username": "sharudesu"
+}
+
+###
+
+PUT http://localhost:5000/rooms/remove/12
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+{
+  "username": "sharudesu"
+}

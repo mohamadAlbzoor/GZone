@@ -37,14 +37,48 @@ router.get('/categories', async (req, res) => {
     allData.forEach((category, i) => {
       const splitCat = category.categories.split(';')
       splitCat.forEach((cat) => {
-        if(cat === "Stat"){
-          console.log(allData[i]);
-        }
         obj[cat] = obj[cat] ? obj[cat] + 1 : 1
       })
     });
     console.log(obj);
-    res.json({})
+    res.json(obj)
+  }
+  catch(err){
+    console.log(err);
+  }
+})
+
+router.get('/genres', async (req, res) => {
+  try{
+    // const allData = await query('SELECT `appid`, `genres` FROM `steam`')
+    // const allGenres = await query('SELECT * FROM `genres`')
+    // let genres = {}
+    // allGenres.forEach(gen => {
+    //   genres[gen.title] = gen.id
+    // })
+
+    // allData.forEach((game) => {
+    //   const splitGenres = game.genres.split(';')
+    //   splitGenres.forEach(async (genre) => {
+    //     await query('INSERT INTO `game_includes_genre` VALUES (?, ?)', [game.appid, genres[genre]])
+    //   })
+    // });
+
+    // console.log("DONE");
+
+    const genres = await query('SELECT * FROM `genres`')
+    res.status(200).json(genres)
+  }
+  catch(err){
+    console.log(err);
+  }
+})
+
+router.get('/genres/top', async (req, res) => {
+  try{
+    // Top 5 genres 
+    const topGenres = await query('SELECT `game_includes_genre`.`genre` AS "id", `genres`.`title`, COUNT(`game_includes_genre`.`appid`) AS "games" FROM `game_includes_genre` INNER JOIN `genres` ON `game_includes_genre`.`genre` = `genres`.`id` GROUP BY `game_includes_genre`.`genre` ORDER BY `games` DESC LIMIT 5')
+    res.status(200).json(topGenres)
   }
   catch(err){
     console.log(err);
