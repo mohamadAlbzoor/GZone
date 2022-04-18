@@ -14,7 +14,7 @@ POST http://localhost:5000/user/login
 Content-Type: application/json
 
 {
-  "email": "mb22022@hotmail.com",
+  "email": "iish4rdex@hotmail.com",
   "password": "xdxdxdxd"
 }
 
@@ -41,8 +41,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMDUzMDg5fQ.9PzMUBqBErxSK6xXnooFhbmy5VjffEFE15ziswkqlo4
 
 {
-  "title": "Tuned in tokyo",
-  "capacity": 10,
+  "title": "Advanced Sleeping",
+  "capacity": 5,
   "appid": 10
 }
 
@@ -54,7 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
 
 ###
 
-PUT http://localhost:5000/rooms/add/12
+PUT http://localhost:5000/rooms/add/14
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
 
@@ -71,3 +71,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
 {
   "username": "sharudesu"
 }
+
+###
+
+GET http://localhost:5000/rooms/show
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+###
+
+GET http://localhost:5000/rooms/show/14
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
