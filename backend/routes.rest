@@ -83,3 +83,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
 GET http://localhost:5000/rooms/show/14
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+
+###
+
+PUT http://localhost:5000/likes/like/50
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+
+###
+
+PUT http://localhost:5000/likes/dislike/20
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA
+
+###
+
+GET http://localhost:5000/likes/show
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTQ2MjI3fQ.yLW6beV-tiutiZ0kM2WhB-IByU5jQkBjTx2Tjbbo4nA

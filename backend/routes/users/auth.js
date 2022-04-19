@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
     // Verify the token
     const auth = jwt.verify(token, process.env.ACCESS_TOKEN)
 
-    // Authorized the user
+    // If the token is correct, add the user id to the request body then authorize the user
     req.body.id = auth.id
     next()
   }
