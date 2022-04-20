@@ -157,6 +157,46 @@ router.put('/remove/:id', async (req, res) => {
   res.status(200).json({msg: "User was removed from the room"})
 })
 
+// Show all the rooms the user belongs to
+// Requires authentication
+router.get('/show', async (req, res) => {
+  // Extract the user ID from the request
+  const user = req.body.id
+
+  // Grab all rooms the user belongs to
+  const rooms = await query('SELECT `rooms`.* FROM `user_in_room` INNER JOIN `rooms` ON `room_id` = `id` WHERE `user_id` = ?', [user])
+  if(rooms.length == 0){  // User is not in any rooms
+    return res.status(404).json({msg: "No rooms found"})
+  }
+
+  // Return the rooms
+  res.status(200).json(rooms)
+})
+
+// Show all the users in specific room
+// Requires authentication
+router.get('/show/:id', async (req, res) => {
+  // Extract the data from request body
+  const id = req.params.id
+  const user = req.body.id
+
+  // Check if the room exists
+  const [room] = await query('SELECT * FROM `rooms` WHERE `id` = ?', [id])
+  if(room === undefined){
+    return res.status(400).json({msg: "Room doesn't exist"})
+  }
+
+  // Check if the user belongs to the specified room
+  const [userInRoom] = await query('SELECT * FROM `user_in_room` WHERE `room_id` = ? AND `user_id` = ?', [id, user])
+  if(userInRoom === undefined){
+    return res.status(403).json({msg: "You don't belong to this room"})
+  }
+
+  // Grab all the users from that room
+  const users = await query('SELECT `user`.`id`, `user`.`userName` FROM `user_in_room` INNER JOIN `user` ON `user_in_room`.`user_id` = `user`.`id` WHERE `user_in_room`.`room_id` = ?', [id])
+  res.status(200).json(users)
+})
+
 // Room validation and owner validation
 const roomAndOwnerValidation = async (id, owner, res) => {
   const [room] = await query('SELECT `owner` FROM `rooms` WHERE `id` = ?', [id])
