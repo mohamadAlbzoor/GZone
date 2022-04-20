@@ -90,7 +90,7 @@ router.get('/show', async (req, res) => {
     // return the list of the liked games
     const liked = await query('SELECT `steam`.`appid`, `steam`.`name` FROM `likes` INNER JOIN `steam` ON `likes`.`appid` = `steam`.`appid` WHERE `likes`.`user_id` = ?', [user])
     if(liked.length === 0){
-      return res.status(404).json("No games liked found")
+      return res.status(404).json({msg: "No games liked found"})
     }
     return res.status(200).json(liked)
   }
