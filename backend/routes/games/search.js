@@ -20,7 +20,7 @@ const query = (...args) => {
 }
 
 router.get('/:result',async(req,res,next)=>{
-  let result = '%'+result+'%';
+   result = '%'+result+'%';
   try{
     result =  await query('SELECT * from `steam` WHERE `name` LIKE ?', [req.params.result]);
   }
@@ -28,6 +28,6 @@ router.get('/:result',async(req,res,next)=>{
     throw err;
   }
   if(result.length==0)res.status(404).json({msg:'no results'});
-  res.status(200).json({result});
+  else res.status(200).json({result});
 });
 module.exports = router
