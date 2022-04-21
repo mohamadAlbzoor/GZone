@@ -27,6 +27,7 @@ router.get('/:result',async(req,res,next)=>{
   catch(err){
     throw err;
   }
+  if(result.length==0)res.status(404).json({msg:'no results'});
   res.status(200).json({result});
 });
 module.exports = router
