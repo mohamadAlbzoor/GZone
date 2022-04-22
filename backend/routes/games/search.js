@@ -20,9 +20,9 @@ const query = (...args) => {
 }
 
 router.get('/:result',async(req,res,next)=>{
-   result = '%'+result+'%';
+  const parameter = '%'+req.params.result+'%';
   try{
-    result =  await query('SELECT * from `steam` WHERE `name` LIKE ?', [req.params.result]);
+    result =  await query('SELECT * from `steam` WHERE `name` LIKE ?', [parameter]);
   }
   catch(err){
     throw err;
