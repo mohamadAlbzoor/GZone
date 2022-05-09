@@ -42,6 +42,7 @@ dependencies:
   http:
   flutter_typeahead:
   readmore:
+  form_field_validator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -53,10 +54,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  build_runner:
-  stacked_generator: ^0.4.1
-  analyzer: ^1.7.0
-  # Stacked State Management
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -71,7 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/apex.png
-  #   - images/a_dot_ham.jpeg
+     - assets/images/Untitled-1-01.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -95,11 +93,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Cairo-Bold.ttf
         - asset: assets/fonts/Cairo-ExtraBold.ttf
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+    - family: Schyler
+      fonts:
+        - asset: assets/fonts/OpenSans.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
