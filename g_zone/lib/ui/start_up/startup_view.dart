@@ -28,14 +28,13 @@ class StartUpView extends StatelessWidget {
 }
 
 class StartUpViewModel extends BaseViewModel {
-
   final log = getLogger('StartUpViewModel');
   final _navigationService = locator<NavigationService>();
-  
+
   Future<void> runStartupLogic() async {
     log.i("running startup logic ...");
 
     // this should nav only if the user is authenticated ...
-    _navigationService.replaceWith(Routes.defaultPage);
+    _navigationService.replaceWith(Routes.login);
   }
 }
