@@ -4,8 +4,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:g_zone/UI/home.dart';
+import 'package:g_zone/UI/services/user_service.dart';
 import 'package:g_zone/UI/signup.dart';
+import 'package:g_zone/UI/start_up/default_page.dart';
+import 'package:g_zone/api/login_api.dart';
 import 'package:get/get.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../app/app.locator.dart';
+import '../app/app.router.dart';
+import '../models/jwt.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,6 +24,10 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final myController = TextEditingController();
   final PassController = TextEditingController();
+  late JWT j;
+  final _navigationService = locator<NavigationService>();
+
+  final u = locator<userServices>();
 
   @override
   void dispose() {
@@ -130,13 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(top: 60.0),
                 ),
                 FlatButton(
-                  onPressed: () {
-                    //}
-                    //}
-                    //TODO FORGOT PASSWORD SCREEN GOES HERE
-                    //}
-                    //}
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Forgot Password',
                     style: TextStyle(color: Colors.white, fontSize: 15),
@@ -156,11 +162,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: RaisedButton(
                       onPressed: () async {
                         if (formkey.currentState!.validate()) {
-                          //}
-                          //}
-                          //sends data to the back end
-                          //}
-                          //}
+                          j = await LoginApi.postLogin(
+                              myController.text, PassController.text);
+                          if (j.jwt == "") {
+                            AlertDialog(title: Text("Invalid credentials"));
+                            myController.clear();
+                            PassController.clear();
+                          } else {
+                            u.jwt = j;
+                            _navigationService.navigateTo(Routes.defaultPage);
+                          }
                         } else {
                           formkey.currentState!.validate();
                         }
@@ -201,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     //}
                     //}
-                    Get.to(() => SignupScreen());
+                    _navigationService.navigateTo(Routes.signup);
                     // }
                     //}
                   },
