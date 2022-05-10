@@ -23,11 +23,12 @@ const query = (...args) => {
 router.use(auth)
 
 // User likes a game
+// {appid}
 // Requires authentication
-router.put('/like/:appid', async (req, res) => {
+router.put('/like', async (req, res) => {
   try{
     // Extract data from the request body
-    const appid = req.params.appid
+    const appid = req.body.appid
     const user = req.body.id
 
     // Check if the game exists
@@ -52,11 +53,12 @@ router.put('/like/:appid', async (req, res) => {
 })
 
 // User dislikes a game
+// {appid}
 // Requires authentication
-router.put('/dislike/:appid', async (req, res) => {
+router.put('/dislike', async (req, res) => {
   try{
     // Extract data from the request body
-    const appid = req.params.appid
+    const appid = req.body.appid
     const user = req.body.id
 
     // Check if the game exists

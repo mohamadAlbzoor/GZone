@@ -23,11 +23,6 @@ const query = (...args) => {
   })
 }
 
-router.use((req, res, next) => {
-  console.log(req.url, moment().format('LTS'))
-  next()
-})
-
 // Sign up route
 router.post('/signUp', async (req, res) => {
   try{

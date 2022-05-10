@@ -77,6 +77,34 @@ router.delete('/delete/:id', async (req, res) => {
   res.status(200).json({msg: "Room was deleted"})
 })
 
+// Leaves a room
+// Requires authentication
+router.delete('/leave/:id', async (req, res) => {
+  // Extract data from request body/parameters
+  const id = req.params.id
+  const user = req.body.id
+
+  // Grab the room owner and check if he's the one leaving
+  const [room] = await query('SELECT `owner` FROM `rooms` WHERE `id` = ?', [id])
+  if(room === undefined){  // Room doesn't exist
+    return res.status(400).json({msg: "Invalid room id"})
+  }
+  if(room.owner === id){      // The one leaving is the owner
+    return res.status(403).json({msg: "Owners can only delete rooms"})
+  }
+
+  // Check if user is inside the room
+  const [userInRoom] = await query('SELECT `user_id` FROM `user_in_room` WHERE `room_id` = ? AND `user_id` = ?', [id, user])
+  if(userInRoom === undefined){
+    return res.status(400).json({msg: "User is not in the room"})
+  }
+
+  // Remove the user from the room and decrement the room current user count
+  await query('DELETE FROM `user_in_room` WHERE `room_id` = ? AND `user_id` = ?', [id, user])
+  await query('UPDATE `rooms` SET `current_count` = `current_count` - 1 WHERE `id` = ?', [id])
+  res.status(200).json({msg: "User was removed from the room"})
+})
+
 // Adds user to a room
 // {username}
 // Requires authentication
@@ -145,13 +173,13 @@ router.put('/remove/:id', async (req, res) => {
     return res.status(400).json({msg: "User was not found"})
   }
 
-  // Check if user is inside the room and decrement the room current user count
+  // Check if user is inside the room
   const [userInRoom] = await query('SELECT `user_id` FROM `user_in_room` WHERE `room_id` = ? AND `user_id` = ?', [id, user.id])
   if(userInRoom === undefined){
     return res.status(400).json({msg: "User is not in the room"})
   }
 
-  // Remove the user from the room
+  // Remove the user from the room and decrement the room current user count
   await query('DELETE FROM `user_in_room` WHERE `room_id` = ? AND `user_id` = ?', [id, user.id])
   await query('UPDATE `rooms` SET `current_count` = `current_count` - 1 WHERE `id` = ?', [id])
   res.status(200).json({msg: "User was removed from the room"})

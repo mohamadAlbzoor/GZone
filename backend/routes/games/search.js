@@ -19,8 +19,18 @@ const query = (...args) => {
   })
 }
 
-router.get('/:email',async(req,res,next)=>{
-  const result = await query('SELECT * from `steam` WHERE `name` LIKE ?', [req.params.email])
+// Searches for a game accord to the title
+router.get('/:title', async (req,res) => {
+  // Extract the title and add the wild card
+  const title = '%' + req.params.title + '%'
+  const result = await query('SELECT * from `steam` WHERE `name` LIKE ?', [title])
+
+  // Handle 0 games returned
+  if(result.length == 0){
+    return res.status(404).json({msg: "No games found"})
+  }
+
+  // Return the list of games
   res.status(200).json({result})
 });
 
