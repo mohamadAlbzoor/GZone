@@ -24,16 +24,16 @@ router.use(auth)
 
 // Gets first 10 games with liked flag
 router.get('/', async (req, res) => {
-  const user = req.body.user
+  const user = req.body.id
   const games = await query('SELECT *, CASE WHEN `x`.`user_id` IS NULL THEN "false" ELSE "true" END AS liked FROM (SELECT `steam`.*, `likes`.`user_id` FROM `steam` LEFT JOIN `likes` ON `likes`.`appid` = `steam`.`appid` AND `likes`.`user_id` = ? LIMIT 1) AS x ORDER BY `x`.`appid` ASC', [user])
   res.status(200).json(games)
 })
 
 // Gets first X games
 router.get('/:count', async (req, res) => {
-  const user = req.body.user
+  const user = req.body.id
   const count = parseInt(req.params.count)
-  const games = await query('SELECT *, CASE WHEN `x`.`user_id` IS NULL THEN "false" ELSE "true" END AS liked FROM (SELECT `steam`.*, `likes`.`user_id` FROM `steam` LEFT JOIN `likes` ON `likes`.`appid` = `steam`.`appid` AND `likes`.`user_id` = ? LIMIT ?) AS x ORDER BY `x`.`appid` ASC', [user, count])
+  const games = await query('SELECT *, CASE WHEN `x`.`user_id` IS NULL THEN "false" ELSE "true" END AS liked FROM (SELECT `steam`.*, `likes`.`user_id` FROM `steam` LEFT JOIN `likes` ON `likes`.`appid` = `steam`.`appid` AND `likes`.`user_id` = ? GROUP BY `steam`.`appid` LIMIT ?) AS x ORDER BY `x`.`appid` ASC', [user, count])
   res.status(200).json(games)
 })
 module.exports = router
