@@ -1,3 +1,4 @@
+import 'package:g_zone/UI/services/user_service.dart';
 import 'package:g_zone/ui/card/card_view.dart';
 import 'package:g_zone/ui/home/home.dart';
 import 'package:g_zone/ui/start_up/startup_view.dart';
@@ -17,7 +18,10 @@ import '../UI/signup.dart';
     CupertinoRoute(page: CardView),
     CupertinoRoute(page: defaultPage)
   ],
-  dependencies: [LazySingleton(classType: NavigationService)],
+  dependencies: [
+    LazySingleton(classType: NavigationService),
+    LazySingleton(classType: userServices)
+  ],
   logger: StackedLogger(),
 )
 class AppSetup {

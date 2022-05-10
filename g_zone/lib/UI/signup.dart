@@ -4,8 +4,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:g_zone/UI/login.dart';
+import 'package:g_zone/UI/services/user_service.dart';
+import 'package:g_zone/api/signup_api.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../app/app.locator.dart';
+import '../app/app.router.dart';
+import '../models/jwt.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -15,10 +22,15 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final myController = TextEditingController();
-  final myController2 = TextEditingController();
+  final uController = TextEditingController();
 
   final PassController = TextEditingController();
   final PassController2 = TextEditingController();
+
+  late JWT j;
+  final _navigationService = locator<NavigationService>();
+
+  final u = locator<userServices>();
 
   @override
   void dispose() {
@@ -72,6 +84,33 @@ class _SignupScreenState extends State<SignupScreen> {
                       image: AssetImage('images/Untitled-1-01.png'),
                     ),
                   )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 15.0, right: 15.0, top: 15, bottom: 15),
+                  child: TextFormField(
+                      style: TextStyle(color: Colors.white),
+                      controller: uController,
+                      decoration: InputDecoration(
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: null,
+                            fontWeight: FontWeight.w100,
+                            fontStyle: FontStyle.normal,
+                          ),
+                          labelStyle: TextStyle(
+                            color: Color(0xff59667d),
+                            fontSize: null,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                          ),
+                          labelText: 'Username',
+                          hintText: 'Enter a Username'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Username Cant be Empty';
+                        }
+                      }),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
@@ -180,11 +219,16 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: RaisedButton(
                       onPressed: () async {
                         if (formkey.currentState!.validate()) {
-                          //}
-                          //}
-                          //sends data to the back end
-                          //}
-                          //}
+                          j = await SignupApi.postSingup(
+                              uController.text,
+                              myController.text,
+                              PassController.text,
+                              PassController2.text);
+                          if (j.jwt == "") {
+                          } else {
+                            u.jwt = j;
+                            _navigationService.navigateTo(Routes.defaultPage);
+                          }
                         } else {
                           formkey.currentState!.validate();
                         }
