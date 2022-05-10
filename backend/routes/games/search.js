@@ -18,12 +18,10 @@ const query = (...args) => {
     })
   })
 }
-// app.get('/',async(req,res,next)=>{
-//   
 
-// });
 router.get('/:email',async(req,res,next)=>{
   const result = await query('SELECT * from `steam` WHERE `name` LIKE ?', [req.params.email])
   res.status(200).json({result})
 });
+
 module.exports = router
